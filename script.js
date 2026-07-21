@@ -1,18 +1,18 @@
 /* =========================================================
-   Rotina Segura para Body Piercers — Interações
+   Rotina Segura para Body Piercers — Interações do clone
    ========================================================= */
 
-// URL do checkout (Hotmart)
+// URL do checkout (Hotmart) — preservada do projeto original
 const CHECKOUT_URL = "https://pay.hotmart.com/M106604692Y?checkoutMode=10&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnjp8Ena_geupZ6onCMeexZzfOyjOzc2yM0uP_hFT-gAk3VGz-8cmkvNVl7Hs_aem__5CBnW9IGjcaPWJIR9vF-A&bid=1783527041233";
 
-// ---------- Aplica o link do checkout em todos os CTAs marcados ----------
+// Aplica o link do checkout em todos os CTAs marcados com data-checkout
 document.querySelectorAll("[data-checkout]").forEach((el) => {
   el.setAttribute("href", CHECKOUT_URL);
   el.setAttribute("target", "_blank");
   el.setAttribute("rel", "noopener noreferrer");
 });
 
-// ---------- Menu mobile ----------
+// Menu mobile — abre e fecha
 const menuBtn = document.getElementById("menu-toggle");
 const navMobile = document.getElementById("nav-mobile");
 if (menuBtn && navMobile) {
@@ -24,7 +24,7 @@ if (menuBtn && navMobile) {
   });
 }
 
-// ---------- Lista "Para quem é" (itens numerados) ----------
+// Bloco 7 — Lista "Para quem é" (itens numerados)
 const forWhomItems = [
   "Aprendeu body piercing principalmente na prática e sente falta de uma base mais organizada.",
   "Ainda está construindo sua técnica e quer reduzir erros no atendimento.",
@@ -51,62 +51,37 @@ if (numberedGrid) {
     .join("");
 }
 
-// ---------- Accordion dos capítulos ----------
+// Bloco 5 — Accordion dos capítulos
 const chapterGroups = [
   {
     name: "Fundamentos",
     range: "Capítulos 1 – 5",
     description: "Base conceitual da biossegurança e contexto de fiscalização.",
-    items: [
-      "Introdução",
-      "Por que pequenas falhas podem custar caro",
-      "Biossegurança sem complicação",
-      "Contaminação cruzada",
-      "Fiscalização",
-    ],
+    items: ["Introdução", "Por que pequenas falhas podem custar caro", "Biossegurança sem complicação", "Contaminação cruzada", "Fiscalização"],
   },
   {
     name: "Barreiras e preparo",
     range: "Capítulos 6 – 9",
     description: "Higiene, EPI e preparação do ambiente antes do atendimento.",
-    items: [
-      "Higiene das mãos",
-      "Uso de luvas",
-      "Antissepsia",
-      "Preparação do ambiente e bancada",
-    ],
+    items: ["Higiene das mãos", "Uso de luvas", "Antissepsia", "Preparação do ambiente e bancada"],
   },
   {
     name: "Ambiente e materiais",
     range: "Capítulos 10 – 13",
     description: "Rotina de limpeza, armazenamento, processamento e esterilização.",
-    items: [
-      "Limpeza do estúdio",
-      "Armazenamento",
-      "Processamento de materiais",
-      "Esterilização",
-    ],
+    items: ["Limpeza do estúdio", "Armazenamento", "Processamento de materiais", "Esterilização"],
   },
   {
     name: "Rotina completa",
     range: "Capítulos 14 – 17",
     description: "A sequência prática do antes, durante e depois de cada cliente.",
-    items: [
-      "Erros comuns",
-      "Antes do atendimento",
-      "Durante o atendimento",
-      "Depois do atendimento",
-    ],
+    items: ["Erros comuns", "Antes do atendimento", "Durante o atendimento", "Depois do atendimento"],
   },
   {
     name: "Consolidação",
     range: "Capítulos 18 – 20",
     description: "Checklists e aplicação para consolidar tudo na prática.",
-    items: [
-      "Checklist para fiscalização",
-      "Ajustes simples",
-      "Conclusão e aplicação",
-    ],
+    items: ["Checklist para fiscalização", "Ajustes simples", "Conclusão e aplicação"],
   },
 ];
 const chaptersEl = document.getElementById("chapters-accordion");
@@ -138,7 +113,7 @@ if (chaptersEl) {
     .join("");
 }
 
-// ---------- FAQ ----------
+// Bloco 13 — FAQ (inicia todo fechado no mobile e desktop)
 const faqs = [
   { q: "O produto serve para quem está começando?", a: "Sim. O material foi pensado principalmente para profissionais que ainda estão construindo sua base técnica ou aprenderam grande parte da rotina na prática." },
   { q: "O eBook substitui um curso técnico?", a: "Não. Ele é um guia prático para organizar pontos importantes da rotina, mas não substitui formação aprofundada, normas sanitárias ou orientações específicas." },
@@ -165,20 +140,20 @@ if (faqEl) {
     .join("");
 }
 
-// ---------- Delegação de clique para todos os accordions ----------
+// Delegação de clique para todos os accordions
 document.querySelectorAll(".accordion").forEach((container) => {
   container.addEventListener("click", (e) => {
     const head = e.target.closest(".acc-head");
     if (!head) return;
     const item = head.closest(".acc-item");
     const wasOpen = item.classList.contains("open");
-    // fecha os outros do mesmo accordion
+    // Fecha os outros do mesmo accordion
     container.querySelectorAll(".acc-item").forEach((i) => i.classList.remove("open"));
     if (!wasOpen) item.classList.add("open");
   });
 });
 
-// ---------- CTA sticky mobile: mostra após o hero e some perto da oferta ----------
+// CTA sticky mobile — aparece após o hero e some perto da oferta
 const sticky = document.getElementById("sticky-mobile");
 if (sticky) {
   const onScroll = () => {
